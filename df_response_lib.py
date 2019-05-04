@@ -428,7 +428,7 @@ class fulfillment_response():
     # @param fulfillment_messages = fulfillment_messages JSON
     # @param output_contexts = output_contexts JSON
     # @param followup_event_input = followup_event_input JSON
-    def main_response(self, fulfillment_text, fulfillment_messages=None, output_contexts=None, followup_event_input=None):
+    def main_response(self, fulfillment_text=None, fulfillment_messages=None, output_contexts=None, followup_event_input=None):
         response = {}
         if followup_event_input is not None:
             response['followupEventInput'] = followup_event_input['followup_event_input']
@@ -436,7 +436,8 @@ class fulfillment_response():
             response["outputContexts"] = output_contexts['output_contexts']
         if fulfillment_messages is not None:
             response["fulfillmentMessages"] = fulfillment_messages['fulfillment_messages']
-        response["fulfillmentText"] = fulfillment_text['fulfillment_text']
+        if fulfillment_text is not None:
+            response["fulfillmentText"] = fulfillment_text['fulfillment_text']
 
         # return the main dialogflow response
         return response
